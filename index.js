@@ -29,18 +29,24 @@ async function getFile(filepath) {
   }
 }
 
-//usando .then
+//getFile('./arquivos/texto1.md');
+
+module.exports = getFile;
+
 /*
+
+//ALTERNATIVAS AO ASYNC/AWAIT-------------------------------
+//usando .then
+
 function getFile(filepath) {
   const encoding = 'utf-8'
   fs.promises.readFile(filepath, encoding)
   .then((data) => console.log(chalk.green(data)))
   .catch((error) => handleError(error))
 }
-*/
 
 //sintaxe do fs
-/*
+
 function getFile(filepath) {
   const encoding = 'utf-8'
   fs.readFile(filepath, encoding, (error, data) => {
@@ -48,6 +54,5 @@ function getFile(filepath) {
     console.log(chalk.green(data));
   })
 }
-*/
 
-getFile('./arquivos/texto1.md');
+*/

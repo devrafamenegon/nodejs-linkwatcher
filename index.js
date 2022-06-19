@@ -12,7 +12,7 @@ function extractLinks(text) {
     });
   }
   
-  return arrayResults;
+  return arrayResults.length === 0 ? 'Não há links' : arrayResults;
 }
 
 function handleError(e) {
@@ -23,13 +23,11 @@ async function getFile(filepath) {
   const encoding = 'utf-8';
   try {
     const text = await fs.promises.readFile(filepath, encoding)
-    console.log(extractLinks(text));
+    return extractLinks(text);
   } catch(error) {
     handleError(error);
   }
 }
-
-//getFile('./arquivos/texto1.md');
 
 module.exports = getFile;
 

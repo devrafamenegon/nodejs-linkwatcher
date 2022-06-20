@@ -1,14 +1,28 @@
-function urlGenerator(linksArray) {
-  let links = [];
-  linksArray.forEach((linksChild) =>{
-    linksChild.map(linkObject => links.push(Object.values(linkObject).join()));
-  })
+//mantendo o padrão de import commonJS
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
-  return links;
+async function statusCheck(urlArray) {
+  //Promises async await
+  const arrayStatus =  await Promise.all(urlArray.map(async url => {
+    const res = await fetch(url);
+    return res.status;
+  }))
+  return arrayStatus;
 }
 
-function urlValidate(linksArray) {
-  return urlGenerator(linksArray);
+function urlGenerator(linksArray) {
+  let urls = [];
+  linksArray.forEach((linksChild) =>{
+    linksChild.map(linkObject => urls.push(Object.values(linkObject).join()));
+  })
+
+  return urls;
+}
+
+async function urlValidate(linksArray) {
+  const links = urlGenerator(linksArray);
+  const statusLinks = await statusCheck(links);
+  return statusLinks;
 }
 
 module.exports = urlValidate;

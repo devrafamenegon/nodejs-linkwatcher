@@ -1,11 +1,16 @@
 const chalk = require('chalk');
 const getFile = require('./index');
+const urlValidate = require('./http-validation')
 
 const path = process.argv;
 
 async function processText(pathFile) {
   const result = await getFile(pathFile[2]);
-  console.log(chalk.yellow('lista de links'), result);
+  if(pathFile[3] === 'validate'){
+    console.log(chalk.yellow('validated links'), urlValidate(result));
+  } else {
+    console.log(chalk.yellow('list of links'), result);  
+  }
 }
 
 processText(path);

@@ -13,7 +13,7 @@ function extractLinks(text) {
     });
   }
   
-  return arrayResults.length === 0 ? 'Não há links' : arrayResults;
+  return arrayResults.length === 0 ? 'Any links founded' : arrayResults.join;
 }
 
 function handleError(e) {

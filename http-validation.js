@@ -2,36 +2,32 @@
 const fetch = (...args) => import('node-fetch')
   .then(({default: fetch}) => fetch(...args));
 
-const chalk = require('chalk');
-
 function handleError(e) {
   throw new Error(e.message);
 }
 
 async function statusCheck(urlArray) {
   try {
-    //Promises async await
     const arrayStatus =  await Promise
-    .all(urlArray.map(async url => {
-      const res = await fetch(url);
-      return (`${res.status} - ${res.statusText}`);
+    .all(urlArray
+      .map(async url => {
+        const res = await fetch(url);
+        return (`${res.status} - ${res.statusText}`);
     }))
     return arrayStatus;
   } catch(error) {
     handleError(error);
   }
-  
 }
 
 function urlGenerator(linksArray) {
-  return linksArray.map(linkObject => (Object.values(linkObject).join()));
+  return linksArray.map(linkObject => Object.values(linkObject).join());
 }
 
 async function urlValidate(linksArray) {
   const links = urlGenerator(linksArray);
   const statusLinks = await statusCheck(links);
 
-  //spread operator
   const results = linksArray.map((object, index) => ({
     ...object, status: statusLinks[index] 
   }))

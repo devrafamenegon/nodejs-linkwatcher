@@ -1,15 +1,28 @@
 {
-  "name": "lib-markdown",
+  "name": "link-watcher",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This tool is used to check whether the URLs of a markdown file are valid or not.",
+  "keywords": ["markdown", "URL", "link", "check"],
+  "main": "./cli.js",
+  "homepage": "https://github.com/devrafamenegon/nodejs-linkwatcher",
+  "bin": { 
+    "link-watcher": "./cli.js" 
+  },
+  "preferGlobal": true,
   "scripts": {
     "test": "jest ./test",
     "cli": "node cli.js ./arquivos/texto1.md"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devrafamenegon/nodejs-linkwatcher.git"
+  },
+  "author": "Rafael Henrique Menegon <dev.rafaelmenegon@gmail.com>, (https://devrafamenegon.github.io/)",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devrafamenegon/nodejs-linkwatcher/issues",
+    "email": "dev.rafaelmenegon@gmail.com"
+  },
   "dependencies": {
     "chalk": "^4.1.2",
     "node-fetch": "^3.2.6"
